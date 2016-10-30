@@ -1,0 +1,9 @@
+@mixin gradient-primary-text {
+  background: linear-gradient(330deg, $gradient-one, $gradient-two);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin gradient-primary-bg {
+  background: linear-gradient(330deg, $gradient-one, $gradient-two);
+}

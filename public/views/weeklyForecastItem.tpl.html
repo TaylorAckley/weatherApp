@@ -1,0 +1,11 @@
+<li class="col-xs-12 col-md-3 col-lg-2">
+	<span class="weekly-forecast-detail-date">
+		{{$ctrl.data.time * 1000 | date: "EEE"}}
+	</span>
+	<br>
+	<skycon icon="$ctrl.data.icon" color="$ctrl.icon.color" class="weather-icon"></skycon>
+	<span class="weekly-forecast-detail-temp">High: {{$ctrl.data.temperatureMax | number:0}} &nbsp; Low: {{$ctrl.data.temperatureMax| number: 0}}</span>
+	<span class="weekly-forecast-detail-summary">
+		{{$ctrl.data.summary}}
+	</span>
+</li>

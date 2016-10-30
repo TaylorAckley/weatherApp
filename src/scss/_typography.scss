@@ -1,0 +1,82 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0 0 35px;
+    letter-spacing: 1px;
+    font-family: $font-stack-headers;
+}
+
+p {
+    margin: 0 0 25px;
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+@media(min-width:768px) {
+    p {
+        margin: 0 0 35px;
+        font-size: 1.3rem;
+        line-height: 1.6;
+    }
+}
+
+.heading {
+    font-size: 7rem; //use rem for better responsiveness.
+}
+
+.sub-heading {
+    font-size: 4rem;
+}
+
+.current-forecast-summary { //I do my best to name classes how I would say it out loud.  Though an argument could be made of putting the resource/object first.  ie: forecast-current-summary;
+    font-size: 5rem;
+}
+
+.current-forecast-detail-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.current-forecast-detail-text {
+    font-size: 2.2rem;
+}
+
+.weekly-forecast-detail-date {
+    display: block;
+    margin-top: 5px;
+    text-transform: uppercase;
+    color: $red;
+    width: 100%;
+    font-size: 3rem;
+
+    text-align: center
+}
+
+.weekly-forecast-detail-summary {
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    text-align: left;
+    font-size: 3rem;
+}
+
+.weekly-forecast-detail-temp {
+    display: block;
+    margin-bottom: 5px;
+    
+    width: 100%;
+    text-align: center
+}
+
+.weekly-forecast-summary {
+    font-size: 4rem;
+}
+
+
+.weather-icon {
+
+}
+
