@@ -7,5 +7,5 @@ angular.module('weatherApp')
       icon: '='
 
     },
-    templateUrl: 'views/weeklyForecastItem.tpl.html',
-  });  
+    templateUrl: 'templates/weeklyForecastItem.tpl.html',
+  });

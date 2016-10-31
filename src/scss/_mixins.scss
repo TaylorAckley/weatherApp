@@ -1,3 +1,5 @@
+//Global mixins.
+
 @mixin gradient-primary-text {
   background: linear-gradient(330deg, $gradient-one, $gradient-two);
   -webkit-background-clip: text;

@@ -1,19 +1,31 @@
+<div class="loading" ng-show="isLoading">
+  <div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+</div>
+<section ng-hide="isLoading">
   <section class="header-section">
       <div class="container-fluid">
-      <div class="row">
+      <div class="row search-box">
       <div class="col-xs-12 col-md-4 pull pull-right">
       Search box placeholder
       </div>
-        <div class="row">
-          <div class="col-xs-12 col-md-4 col-xs-offset-1"> <!-- Set the columns so it displays 12 across on a phone, but 4/7 on tablets.   This helps control the responsive layout -->
+    </div>
+        <div class="row current-forecast">
+          <div class="col-xs-11 col-md-4 col-xs-offset-1"> <!-- Set the columns so it displays 12 across on a phone, but 4/7 on tablets.   This helps control the responsive layout -->
             <h1 class="heading text-right pull-left">{{userLocation.geo.city}}, {{userLocation.geo.state}}<br/>{{userLocation.geo.country}}</h1>
           </div>
           <div class="col-xs-12 col-md-7 current-forecast pull-right">
           <h4>Current Forecast as of {{forecast.currently.time * 1000 | date:'medium'}}</h4>
-          <div class="col-xs-2">
+          <div class="col-xs-12 col-md-3 col-lg-2">
           <skycon icon="forecast.currently.icon" color="iconDefaults.color" size="iconDefaults.size" class="weather-icon"></skycon>
           </div>
-          <div class="col-xs-10 pull-left">
+          <div class="col-xs-12 col-md-9 col-lg-10 pull-left">
           <p class="current-forecast-summary">{{forecast.currently.summary}}</p>
           <ul class="current-forecast-details">
           <current-forecast-item title="Temperature" text="{{forecast.currently.temperature | number: 0}}&deg;"></current-forecast-item>
@@ -45,3 +57,4 @@
         </div>
       </div>
     </section>
+  </section>

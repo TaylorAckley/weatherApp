@@ -12,7 +12,6 @@ var gulp = require('gulp'),
     rev = require('gulp-rev-append'),
     connect = require('gulp-connect'),
     rev = require('gulp-rev-append');
-    var browserSync = require('browser-sync');
 
 // Asset pipelines.   I do it this way so they are loaded in the correct order.  ie: Angular files, vendor files, custom app files.  Drawback is you need to restart gulp everytime you want to load a new asset.
 
@@ -34,38 +33,12 @@ var cssAssets = [
 
 gulp.task('default', ['watch', 'connect', 'connect', 'bundleJS', 'build-scss', 'bundleCSS', 'rev']);
 
-var cors = function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-  next();
-};
-
 gulp.task('connect', function() {
     connect.server({
         root: 'public',
         port: 9000,
-        livereload: true,
-        middleware: function (connect, opt) {
-          return [cors];
-      }
+        livereload: true
     });
-});
-
-gulp.task('browser-sync', function () {
-  browserSync({
-    notify: false,
-    port: 6543,
-    server: {
-      baseDir: 'public',
-      middleware: function (req, res, next) {
-          res.setHeader('Access-Control-Allow-Origin', '*');
-          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-          res.setHeader("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
-        next();
-      }
-    }
-  });
 });
 
 
@@ -124,7 +97,7 @@ gulp.task('rev', function() {
 });
 
 gulp.task('html', function() {
-    gulp.src('public/*.html')
+    gulp.src('public/**/*.html')
         .pipe(connect.reload());
 });
 

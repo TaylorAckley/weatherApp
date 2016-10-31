@@ -47800,8 +47800,9 @@ angular.module('weatherApp')
       title: '@',
       text: '@'
     },
-    templateUrl: 'views/currentForecastItem.tpl.html'
-  });  
+    templateUrl: 'templates/currentForecastItem.tpl.html'
+  });
+
 "use strict";
 
 angular.module('weatherApp')
@@ -47811,8 +47812,9 @@ angular.module('weatherApp')
       icon: '='
 
     },
-    templateUrl: 'views/weeklyForecastItem.tpl.html',
-  });  
+    templateUrl: 'templates/weeklyForecastItem.tpl.html',
+  });
+
 "use strict";
 
 angular.module('weatherApp')
@@ -47964,6 +47966,7 @@ angular.module('weatherApp')
 
 
     function HomeCtrl($scope, LocationSvc, WeatherSvc, CONSTANTS) {
+      $scope.loading = true;  // set loading icon on conroller load.
         LocationSvc.getCurrentPosition()
             .then(function(response) {
                 $scope.userLocation = response;
@@ -47974,6 +47977,8 @@ angular.module('weatherApp')
               .then(function(forecast) {
                 $scope.forecast = forecast.data;
                 console.log($scope.forecast);
+                $scope.loading = false;  // An alternate way to handle this would be to have a controller on the body element and put ng-show/hide on the includes.
+                                        // When there is a loading event, you would broadcast it to the body controller who would hide the includes for you.
               });
             })
             .catch(function(err) {
@@ -47988,7 +47993,7 @@ angular.module('weatherApp')
 
             $scope.getWindDirection = function(deg) {
               var quadrants = new Array("N", "NNE", "NE", "ENE","E", "ESE", "SE", "SSE","S", "SSW", "SW", "WSW","W", "WNW", "NW", "NNW");
-              return quadrants[Math.floor(((parseInt(deg) + 11.25) / (360/quadrants.length)))]; //normalize the value and then divide by num of quadrants/degrees
+              return quadrants[Math.floor(((parseInt(deg) + 11.25) / (360/quadrants.length)))]; //normalize the value and then divide by num of quadrants/degrees.  Thanks Cliff Mass.
 
             };
     }

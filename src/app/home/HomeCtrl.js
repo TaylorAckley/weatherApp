@@ -10,6 +10,7 @@
 
 
     function HomeCtrl($scope, LocationSvc, WeatherSvc, CONSTANTS) {
+      $scope.loading = true;  // set loading icon on conroller load.
         LocationSvc.getCurrentPosition()
             .then(function(response) {
                 $scope.userLocation = response;
@@ -20,6 +21,8 @@
               .then(function(forecast) {
                 $scope.forecast = forecast.data;
                 console.log($scope.forecast);
+                $scope.loading = false;  // An alternate way to handle this would be to have a controller on the body element and put ng-show/hide on the includes.
+                                        // When there is a loading event, you would broadcast it to the body controller who would hide the includes for you.
               });
             })
             .catch(function(err) {

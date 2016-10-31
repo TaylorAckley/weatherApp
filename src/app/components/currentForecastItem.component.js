@@ -6,5 +6,5 @@ angular.module('weatherApp')
       title: '@',
       text: '@'
     },
-    templateUrl: 'views/currentForecastItem.tpl.html'
-  });  
+    templateUrl: 'templates/currentForecastItem.tpl.html'
+  });
