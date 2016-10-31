@@ -23,6 +23,7 @@
     "animate.css": "^3.5.2",
     "angular-animate": "1.5.8",
     "angular-ui-router": "0.3.1",
-    "angular-skycons": "^2.0.2"
+    "angular-skycons": "^2.0.2",
+    "vsGoogleAutocomplete": "vs-google-autocomplete#^0.5.0"
   }
 }
