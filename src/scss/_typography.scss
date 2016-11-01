@@ -26,6 +26,11 @@ p {
 
 .heading {
     font-size: 7rem; //use rem for better responsiveness.
+
+    @media(max-width:768px) {
+        font-size: 4rem;
+      }
+
 }
 
 .heading.ng-enter {
