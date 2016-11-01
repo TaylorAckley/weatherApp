@@ -22,6 +22,7 @@
               WeatherSvc.getWeather($scope.userLocation.position.latitude, $scope.userLocation.position.longitude)
               .then(function(forecast) {
                 $scope.forecast = forecast.data;
+                console.log(forecast.data);
                 $scope.isLoading = false;  // An alternate way to handle this would be to have a controller on the body element and put ng-show/hide on the includes.
                                         // When there is a loading event, you would broadcast it to the body controller who would hide the includes for you.
               })
