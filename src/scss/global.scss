@@ -1,5 +1,5 @@
 @import 'variables';  //precedence matters, load in order.
 @import 'struct';
 @import 'typography';
-@import '_weekly-forecast';
-@import '_current-forecast';
+@import 'weekly';
+@import 'current';

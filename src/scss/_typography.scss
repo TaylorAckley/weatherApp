@@ -16,7 +16,6 @@ p {
     font-size: 1.2rem;
     line-height: 1.5;
 }
-
 @media(min-width:768px) {
     p {
         margin: 0 0 35px;
@@ -29,10 +28,14 @@ p {
     font-size: 7rem; //use rem for better responsiveness.
 }
 
+.heading.ng-enter {
+ -webkit-animation: zoomIn 2s;
+ -ms-animation: zoomIn 2s;
+ animation: zoomIn 2s;
+}
+
 .sub-heading {
     font-size: 4rem;
 }
 
-.weather-icon {
-
-}
+.weather-icon {}

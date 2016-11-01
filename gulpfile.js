@@ -21,6 +21,9 @@ var jsAssets = [
     'vendor/angular-animate/angular-animate.js',
     'vendor/angular-ui-router/release/angular-ui-router.js',
     'vendor/angular-skycons/angular-skycons.min.js',
+    'vendor/vsGoogleAutocomplete/dist/vs-google-autocomplete.min.js',
+    'vendor/angular-toastr/dist/angular-toastr.min.js',
+    'vendor/angular-toastr/dist/angular-toastr.tpls.min.js',
     'src/app/**/*.js'
 ];
 
@@ -28,6 +31,7 @@ var cssAssets = [
     'vendor/bootstrap/dist/css/bootstrap.css',
     'vendor/animate.css/animate.css',
     'vendor/components-font-awesome/font-awesome.css',
+    'vendor/angular-toastr/dist/angular-toastr.css',
     'src/styles/*.css'
 ];
 

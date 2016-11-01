@@ -9,11 +9,10 @@
 
     function LocationSvc($q, $window, $http, CONSTANTS) {
 
-        function getLocale(data) { //this function makes sense of the wacky data Google returns.
+        function getLocale(data) { //this private function makes sense of the wacky data Google returns.   Pulls out only the component we need to display the users locale
             var locale = {}; //hoist
             for (var i = 0; i < data[0].address_components.length; i++) {
                 var addrType = data[0].address_components[i];
-
                 switch (addrType.types[0]) {
                     case 'locality':
                         locale.city = addrType.long_name;
@@ -27,15 +26,13 @@
                         break;
                 }
             }
-
             return locale;
-
         }
 
         function getPosition() {
             var deferred = $q.defer(); //lets return a promise!
 
-            if (!$window.navigator.geolocation) {
+            if (!$window.navigator.geolocation) {  // Check and make sure the users browser has location enabled.
                 $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + CONSTANTS.DEFAULT_LAT + ',' + CONSTANTS.DEFAULT_LONG + '&key=' + CONSTANTS.GOOGLE_MAPS_API_KEY)
                     .then(function(response) {
                         var coords = {
@@ -44,7 +41,8 @@
                         };
                         deferred.resolve({
                             position: coords,
-                            geo: getLocale(response.data.results)
+                            geo: getLocale(response.data.results),
+                            isDefault: true  //let controller know it's getting the default location of london.
                         });
                     })
                     .catch(function(err) {
@@ -59,12 +57,10 @@
                     function(position) {
                         $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&key=' + CONSTANTS.GOOGLE_MAPS_API_KEY)
                             .then(function(response) {
-
                                 deferred.resolve({
                                     position: position.coords,
                                     geo: getLocale(response.data.results)
                                 });
-
                             })
                             .catch(function(err) {
                                 deferred.reject({
@@ -80,10 +76,8 @@
                         });
                     });
             }
-
             return deferred.promise;
         }
-
         return {
             getCurrentPosition: getPosition
         };
