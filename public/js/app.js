@@ -50920,8 +50920,8 @@ angular.module('ui.router.state')
             // Nothing ruins your like a bot stealing your S3 or mail service keys.
             'FORECASTER_API_KEY': 'cedba224531c8bdebd8ddc86f57a1fcf', //It's typically a bad idea to put this here.
             'GOOGLE_MAPS_API_KEY': 'AIzaSyCVagOKmuUJABOVWolb2cRp-HMEWgS6rek',
-            'DEFAULT_LONG': '-0.118092', //London.  If a users location is off, London will be the default location
-            'DEFAULT_LAT': '51.509865'
+            'DEFAULT_LONG': '-0.127758', //London.  If a users location is off, London will be the default location
+            'DEFAULT_LAT': '51.507351'
 
         });
 
@@ -51029,29 +51029,7 @@ angular.module('weatherApp')
 
         function getPosition() {
             var deferred = $q.defer(); //lets return a promise!
-
-            if (!$window.navigator.geolocation) {  // Check and make sure the users browser has location enabled.
-                $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + CONSTANTS.DEFAULT_LAT + ',' + CONSTANTS.DEFAULT_LONG + '&key=' + CONSTANTS.GOOGLE_MAPS_API_KEY)
-                    .then(function(response) {
-                        var coords = {
-                            latitude: CONSTANTS.DEFAULT_LAT,
-                            longitude: CONSTANTS.DEFAULT_LONG
-                        };
-                        deferred.resolve({
-                            position: coords,
-                            geo: getLocale(response.data.results),
-                            isDefault: true  //let controller know it's getting the default location of london.
-                        });
-                    })
-                    .catch(function(err) {
-                        deferred.reject({
-                            error: err,
-                            message: 'Geolocation is unavailable.'
-                        });
-                    });
-
-            } else {
-                $window.navigator.geolocation.getCurrentPosition( // Use the browers geolocation service to grab the position, then pass it to a closure function 
+                $window.navigator.geolocation.getCurrentPosition( // Use the browers geolocation service to grab the position, then pass it to a closure function
                     function(position) {
                         $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&key=' + CONSTANTS.GOOGLE_MAPS_API_KEY)
                             .then(function(response) {
@@ -51067,13 +51045,28 @@ angular.module('weatherApp')
                                 });
                             });
                     },
-                    function(err) {
-                        deferred.reject({
-                            error: err,
-                            message: 'Error getting your position.'
-                        });
+                    function(err) { //if the users location is unable to be determined, show London
+                        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + CONSTANTS.DEFAULT_LAT + ',' + CONSTANTS.DEFAULT_LONG + '&key=' + CONSTANTS.GOOGLE_MAPS_API_KEY;
+                        $http.get(url)
+                            .then(function(response) {
+                                console.log(response);
+                                var coords = {
+                                    latitude: CONSTANTS.DEFAULT_LAT,
+                                    longitude: CONSTANTS.DEFAULT_LONG
+                                };
+                                deferred.resolve({
+                                    position: coords,
+                                    geo: getLocale(response.data.results),
+                                    isDefault: true //let controller know it's getting the default location of london.
+                                });
+                            })
+                            .catch(function(err) {
+                                deferred.reject({
+                                    error: err,
+                                    message: 'Geolocation is unavailable.'
+                                });
+                            });
                     });
-            }
             return deferred.promise;
         }
         return {
@@ -51128,11 +51121,13 @@ angular.module('weatherApp')
               })
               .catch(function(err) {
                 toastr.error('Error obtaining forecast data.   Please try again later.');
+                $scope.isLoading = false;
             });
             })
             .catch(function(err) {
               toastr.error('Error retrieving location information.  Please try again later.');
                 $scope.userLocation = false;
+                $scope.isLoading = false;
             });
 
             $scope.locale = {};

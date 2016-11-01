@@ -31,29 +31,7 @@
 
         function getPosition() {
             var deferred = $q.defer(); //lets return a promise!
-
-            if (!$window.navigator.geolocation) {  // Check and make sure the users browser has location enabled.
-                $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + CONSTANTS.DEFAULT_LAT + ',' + CONSTANTS.DEFAULT_LONG + '&key=' + CONSTANTS.GOOGLE_MAPS_API_KEY)
-                    .then(function(response) {
-                        var coords = {
-                            latitude: CONSTANTS.DEFAULT_LAT,
-                            longitude: CONSTANTS.DEFAULT_LONG
-                        };
-                        deferred.resolve({
-                            position: coords,
-                            geo: getLocale(response.data.results),
-                            isDefault: true  //let controller know it's getting the default location of london.
-                        });
-                    })
-                    .catch(function(err) {
-                        deferred.reject({
-                            error: err,
-                            message: 'Geolocation is unavailable.'
-                        });
-                    });
-
-            } else {
-                $window.navigator.geolocation.getCurrentPosition( // Use the browers geolocation service to grab the position, then pass it to a closure function 
+                $window.navigator.geolocation.getCurrentPosition( // Use the browers geolocation service to grab the position, then pass it to a closure function
                     function(position) {
                         $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&key=' + CONSTANTS.GOOGLE_MAPS_API_KEY)
                             .then(function(response) {
@@ -69,13 +47,28 @@
                                 });
                             });
                     },
-                    function(err) {
-                        deferred.reject({
-                            error: err,
-                            message: 'Error getting your position.'
-                        });
+                    function(err) { //if the users location is unable to be determined, show London
+                        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + CONSTANTS.DEFAULT_LAT + ',' + CONSTANTS.DEFAULT_LONG + '&key=' + CONSTANTS.GOOGLE_MAPS_API_KEY;
+                        $http.get(url)
+                            .then(function(response) {
+                                console.log(response);
+                                var coords = {
+                                    latitude: CONSTANTS.DEFAULT_LAT,
+                                    longitude: CONSTANTS.DEFAULT_LONG
+                                };
+                                deferred.resolve({
+                                    position: coords,
+                                    geo: getLocale(response.data.results),
+                                    isDefault: true //let controller know it's getting the default location of london.
+                                });
+                            })
+                            .catch(function(err) {
+                                deferred.reject({
+                                    error: err,
+                                    message: 'Geolocation is unavailable.'
+                                });
+                            });
                     });
-            }
             return deferred.promise;
         }
         return {

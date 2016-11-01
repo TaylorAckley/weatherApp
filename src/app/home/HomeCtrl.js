@@ -28,11 +28,13 @@
               })
               .catch(function(err) {
                 toastr.error('Error obtaining forecast data.   Please try again later.');
+                $scope.isLoading = false;
             });
             })
             .catch(function(err) {
               toastr.error('Error retrieving location information.  Please try again later.');
                 $scope.userLocation = false;
+                $scope.isLoading = false;
             });
 
             $scope.locale = {};

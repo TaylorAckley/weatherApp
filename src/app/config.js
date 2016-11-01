@@ -9,8 +9,8 @@
             // Nothing ruins your like a bot stealing your S3 or mail service keys.
             'FORECASTER_API_KEY': 'cedba224531c8bdebd8ddc86f57a1fcf', //It's typically a bad idea to put this here.
             'GOOGLE_MAPS_API_KEY': 'AIzaSyCVagOKmuUJABOVWolb2cRp-HMEWgS6rek',
-            'DEFAULT_LONG': '-0.118092', //London.  If a users location is off, London will be the default location
-            'DEFAULT_LAT': '51.509865'
+            'DEFAULT_LONG': '-0.127758', //London.  If a users location is off, London will be the default location
+            'DEFAULT_LAT': '51.507351'
 
         });
 
