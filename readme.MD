@@ -5,14 +5,26 @@ Stack:
 - Angular 1.5
 - SCSS
 - Gulp
-- Gul-Connect to serve static files.
--
+- Gulp-Connect to serve static files.
+- Karma/Jasmine
+
 ## Installation and Run
 
-*Assumes you have Node, NPM an Bower installed.*
+*Assumes you have Node, NPM, Karma-CLI and Bower installed.*
 
 - Git clone the repo or unzip to your local machine.
-- run `npm install`
-- run `bower install`
-- run the command `gulp` in a command window.
+- Open a new command window.
+- Run `npm install`
+- Next, run `bower install`
+- Run  `gulp`
 - Point your browser to localhost:9000 and you're off!
+- You can run tests by executing `karma start`
+
+## Todo
+
+*items I would clean up*
+
+- Add unit test to make sure the "Powered by Dark Sky" link is present.
+- Fix build file to copy font folder to public.  Or add a build command all together.
+- Add animations
+- Change the loading to be based off events, not a boolean value in the controller.

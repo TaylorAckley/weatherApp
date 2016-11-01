@@ -17,6 +17,7 @@ var gulp = require('gulp'),
 
 var jsAssets = [
     'vendor/angular/angular.js',
+    'vendor/angular-mocks/angular-mocks.js',
     'vendor/angular-bootstrap/ui-bootstrap.js',
     'vendor/angular-animate/angular-animate.js',
     'vendor/angular-ui-router/release/angular-ui-router.js',
@@ -29,8 +30,8 @@ var jsAssets = [
 
 var cssAssets = [
     'vendor/bootstrap/dist/css/bootstrap.css',
-    'vendor/animate.css/animate.css',
-    'vendor/components-font-awesome/font-awesome.css',
+    'vendor/animate.css/animate.min.css',
+    'vendor/components-font-awesome/css/font-awesome.min.css',
     'vendor/angular-toastr/dist/angular-toastr.css',
     'src/styles/*.css'
 ];

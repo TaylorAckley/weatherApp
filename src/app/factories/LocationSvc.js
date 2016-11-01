@@ -53,7 +53,7 @@
                     });
 
             } else {
-                $window.navigator.geolocation.getCurrentPosition(
+                $window.navigator.geolocation.getCurrentPosition( // Use the browers geolocation service to grab the position, then pass it to a closure function 
                     function(position) {
                         $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&key=' + CONSTANTS.GOOGLE_MAPS_API_KEY)
                             .then(function(response) {

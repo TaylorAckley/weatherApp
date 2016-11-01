@@ -14,7 +14,6 @@
         LocationSvc.getCurrentPosition()
             .then(function(response) {
                 $scope.userLocation = response;
-                console.log($scope.userLocation);
                 if(response.isDefault) {
                   toastr.info('Unable to determine your location.   Use the search box to look up your area.');
                 }
@@ -23,7 +22,6 @@
               WeatherSvc.getWeather($scope.userLocation.position.latitude, $scope.userLocation.position.longitude)
               .then(function(forecast) {
                 $scope.forecast = forecast.data;
-                console.log($scope.forecast);
                 $scope.isLoading = false;  // An alternate way to handle this would be to have a controller on the body element and put ng-show/hide on the includes.
                                         // When there is a loading event, you would broadcast it to the body controller who would hide the includes for you.
               })
@@ -39,11 +37,10 @@
             $scope.locale = {};
 
              $scope.changeLocale = function() {
-              $scope.userLocation.geo = $scope.locale;
               WeatherSvc.getWeather($scope.locale.latitude, $scope.locale.longitude)
               .then(function(forecast) {
+                $scope.userLocation.geo = $scope.locale;
                 $scope.forecast = forecast.data;
-                console.log($scope.forecast);
               })
               .catch(function(err) {
                 toastr.error('Error obtaining forecast data.   Please try again later.');

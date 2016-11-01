@@ -4,6 +4,12 @@
     height: 100%;
 }
 
+@media(max-width:768px) {
+    .current-forecast {
+        text-align: center;
+      }
+    }
+
 .current-forecast-details {
     display: flex;
     width: 95%;
