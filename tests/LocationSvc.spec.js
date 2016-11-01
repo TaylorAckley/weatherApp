@@ -15,7 +15,7 @@
       describe('LocationSvc.getCurrentPosition should exist', function() {
 
           it('should exist', function() {
-              expect(LocationSvc.getCurrentPosition()).toBeDefined();  // Make sure function exists.
+              expect(LocationSvc.getCurrentPosition()).toBeDefined(); // Make sure function exists.
           });
 
           it('output should be defined', function() {

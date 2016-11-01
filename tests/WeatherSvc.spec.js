@@ -27,7 +27,7 @@
           it('output should be defined', function() {
               WeatherSvc.getWeather(DEFAULT_LAT, DEFAULT_LONG)
                   .then(function(response) {
-                      var output = response.data.currently;  // Make sure im getting back useful data.
+                      var output = response.data.currently; // Make sure im getting back useful data.
                       expect(output).toBeDefined();
                   });
 

@@ -27,21 +27,19 @@ p {
 .heading {
     font-size: 7rem; //use rem for better responsiveness.
     text-align: right;
-
     @media(max-width:768px) {
-      position: relative;
-      left: -5px;
+        position: relative;
+        left: -5px;
         font-size: 3.5rem;
         float: left;
         text-align: left;
-      }
-
+    }
 }
 
 .heading.ng-enter {
- -webkit-animation: zoomIn 2s;
- -ms-animation: zoomIn 2s;
- animation: zoomIn 2s;
+    -webkit-animation: zoomIn 2s;
+    -ms-animation: zoomIn 2s;
+    animation: zoomIn 2s;
 }
 
 .sub-heading {

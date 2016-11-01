@@ -50875,7 +50875,8 @@ angular.module('ui.router.state')
 !function(){"use strict";function t(t,e,s,n,o,r,a){function i(){return w.length}function l(t){if(1!==arguments.length||t)if(t)m(t.toastId);else for(var e=0;e<w.length;e++)m(w[e].toastId)}function c(t,e,s){var n=v().iconClasses.error;return f(n,t,e,s)}function u(t,e,s){var n=v().iconClasses.info;return f(n,t,e,s)}function p(t,e,s){var n=v().iconClasses.success;return f(n,t,e,s)}function g(t,e,s){var n=v().iconClasses.warning;return f(n,t,e,s)}function d(t,e){t&&t.isOpened&&w.indexOf(t)>=0&&t.scope.refreshTimer(e)}function m(e,s){function n(t){for(var e=0;e<w.length;e++)if(w[e].toastId===t)return w[e]}function o(){return!w.length}var i=n(e);i&&!i.deleting&&(i.deleting=!0,i.isOpened=!1,t.leave(i.el).then(function(){i.scope.options.onHidden&&i.scope.options.onHidden(!!s,i),i.scope.$destroy();var t=w.indexOf(i);delete x[i.scope.message],w.splice(t,1);var e=r.maxOpened;e&&w.length>=e&&w[e-1].open.resolve(),o()&&(O.remove(),O=null,$=a.defer())}))}function f(t,e,s,n){return angular.isObject(s)&&(n=s,s=null),C({iconClass:t,message:e,optionsOverride:n,title:s})}function v(){return angular.extend({},r)}function h(e){if(O)return $.promise;O=angular.element("<div></div>"),O.attr("id",e.containerId),O.addClass(e.positionClass),O.css({"pointer-events":"auto"});var s=angular.element(document.querySelector(e.target));if(!s||!s.length)throw"Target for toasts doesn't exist";return t.enter(O,s).then(function(){$.resolve()}),$.promise}function C(s){function r(){return g.autoDismiss&&g.maxOpened&&w.length>g.maxOpened}function i(t,e,s){function n(e){if(s[e])return function(){s[e](t)}}s.allowHtml?(t.scope.allowHtml=!0,t.scope.title=o.trustAsHtml(e.title),t.scope.message=o.trustAsHtml(e.message)):(t.scope.title=e.title,t.scope.message=e.message),t.scope.toastType=t.iconClass,t.scope.toastId=t.toastId,t.scope.extraData=s.extraData,t.scope.options={extendedTimeOut:s.extendedTimeOut,messageClass:s.messageClass,onHidden:s.onHidden,onShown:n("onShown"),onTap:n("onTap"),progressBar:s.progressBar,tapToDismiss:s.tapToDismiss,timeOut:s.timeOut,titleClass:s.titleClass,toastClass:s.toastClass},s.closeButton&&(t.scope.options.closeHtml=s.closeHtml)}function l(){function t(t){for(var e=["containerId","iconClasses","maxOpened","newestOnTop","positionClass","preventDuplicates","preventOpenDuplicates","templates"],s=0,n=e.length;s<n;s++)delete t[e[s]];return t}var e={toastId:T++,isOpened:!1,scope:n.$new(),open:a.defer()};return e.iconClass=s.iconClass,s.optionsOverride&&(angular.extend(g,t(s.optionsOverride)),e.iconClass=s.optionsOverride.iconClass||e.iconClass),i(e,s,g),e.el=c(e.scope),e}function c(t){var s=angular.element("<div toast></div>"),n=e.get("$compile");return n(s)(t)}function u(){return g.maxOpened&&w.length<=g.maxOpened||!g.maxOpened}function p(){var t=g.preventDuplicates&&s.message===B,e=g.preventOpenDuplicates&&x[s.message];return!(!t&&!e)||(B=s.message,x[s.message]=!0,!1)}var g=v();if(!p()){var d=l();if(w.push(d),r())for(var f=w.slice(0,w.length-g.maxOpened),C=0,$=f.length;C<$;C++)m(f[C].toastId);return u()&&d.open.resolve(),d.open.promise.then(function(){h(g).then(function(){if(d.isOpened=!0,g.newestOnTop)t.enter(d.el,O).then(function(){d.scope.init()});else{var e=O[0].lastChild?angular.element(O[0].lastChild):null;t.enter(d.el,O,e).then(function(){d.scope.init()})}})}),d}}var O,T=0,w=[],B="",x={},$=a.defer(),b={active:i,clear:l,error:c,info:u,remove:m,success:p,warning:g,refreshTimer:d};return b}angular.module("toastr",[]).factory("toastr",t),t.$inject=["$animate","$injector","$document","$rootScope","$sce","toastrConfig","$q"]}(),function(){"use strict";angular.module("toastr").constant("toastrConfig",{allowHtml:!1,autoDismiss:!1,closeButton:!1,closeHtml:"<button>&times;</button>",containerId:"toast-container",extendedTimeOut:1e3,iconClasses:{error:"toast-error",info:"toast-info",success:"toast-success",warning:"toast-warning"},maxOpened:0,messageClass:"toast-message",newestOnTop:!0,onHidden:null,onShown:null,onTap:null,positionClass:"toast-top-right",preventDuplicates:!1,preventOpenDuplicates:!1,progressBar:!1,tapToDismiss:!0,target:"body",templates:{toast:"directives/toast/toast.html",progressbar:"directives/progressbar/progressbar.html"},timeOut:5e3,titleClass:"toast-title",toastClass:"toast"})}(),function(){"use strict";function t(t){function e(t,e,s,n){function o(){var t=(i-(new Date).getTime())/a*100;e.css("width",t+"%")}var r,a,i;n.progressBar=t,t.start=function(t){r&&clearInterval(r),a=parseFloat(t),i=(new Date).getTime()+a,r=setInterval(o,10)},t.stop=function(){r&&clearInterval(r)},t.$on("$destroy",function(){clearInterval(r)})}return{require:"^toast",templateUrl:function(){return t.templates.progressbar},link:e}}angular.module("toastr").directive("progressBar",t),t.$inject=["toastrConfig"]}(),function(){"use strict";function t(){this.progressBar=null,this.startProgressBar=function(t){this.progressBar&&this.progressBar.start(t)},this.stopProgressBar=function(){this.progressBar&&this.progressBar.stop()}}angular.module("toastr").controller("ToastController",t)}(),function(){"use strict";function t(t,e,s,n){function o(s,o,r,a){function i(t){return a.startProgressBar(t),e(function(){a.stopProgressBar(),n.remove(s.toastId)},t,1)}function l(){s.progressBar=!1,a.stopProgressBar()}function c(){return s.options.closeHtml}var u;if(s.toastClass=s.options.toastClass,s.titleClass=s.options.titleClass,s.messageClass=s.options.messageClass,s.progressBar=s.options.progressBar,c()){var p=angular.element(s.options.closeHtml),g=t.get("$compile");p.addClass("toast-close-button"),p.attr("ng-click","close(true, $event)"),g(p)(s),o.children().prepend(p)}s.init=function(){s.options.timeOut&&(u=i(s.options.timeOut)),s.options.onShown&&s.options.onShown()},o.on("mouseenter",function(){l(),u&&e.cancel(u)}),s.tapToast=function(){angular.isFunction(s.options.onTap)&&s.options.onTap(),s.options.tapToDismiss&&s.close(!0)},s.close=function(t,e){e&&angular.isFunction(e.stopPropagation)&&e.stopPropagation(),n.remove(s.toastId,t)},s.refreshTimer=function(t){u&&(e.cancel(u),u=i(t||s.options.timeOut))},o.on("mouseleave",function(){0===s.options.timeOut&&0===s.options.extendedTimeOut||(s.$apply(function(){s.progressBar=s.options.progressBar}),u=i(s.options.extendedTimeOut))})}return{templateUrl:function(){return s.templates.toast},controller:"ToastController",link:o}}angular.module("toastr").directive("toast",t),t.$inject=["$injector","$interval","toastrConfig","toastr"]}(),angular.module("toastr").run(["$templateCache",function(t){t.put("directives/progressbar/progressbar.html",'<div class="toast-progress"></div>\n'),t.put("directives/toast/toast.html",'<div class="{{toastClass}} {{toastType}}" ng-click="tapToast()">\n  <div ng-switch on="allowHtml">\n    <div ng-switch-default ng-if="title" class="{{titleClass}}" aria-label="{{title}}">{{title}}</div>\n    <div ng-switch-default class="{{messageClass}}" aria-label="{{message}}">{{message}}</div>\n    <div ng-switch-when="true" ng-if="title" class="{{titleClass}}" ng-bind-html="title"></div>\n    <div ng-switch-when="true" class="{{messageClass}}" ng-bind-html="message"></div>\n  </div>\n  <progress-bar ng-if="progressBar"></progress-bar>\n</div>\n')}]);
 "use strict";
 
-;(function() { //let's wrap in a IIFE to make sure we don't pollute the global name space.
+;
+(function() { //let's wrap in a IIFE to make sure we don't pollute the global name space.
 
     angular
         .module('weatherApp', [
@@ -50908,7 +50909,6 @@ angular.module('ui.router.state')
     }
 
 })();
-
 "use strict";
 
 ;(function() { //let's wrap in a IIFE to make sure we don't pollute the global name space.
@@ -50951,51 +50951,49 @@ angular.module('weatherApp')
   });
 
 angular.module('weatherApp')
-.directive('ngEnter', function () {
-  return function (scope, element, attrs) {
-      element.bind("keydown keypress", function (event) {
-          if (event.which === 13) {
-              scope.$apply(function () {
-                  scope.$eval(attrs.ngEnter);
-              });
+    .directive('ngEnter', function() {
+        return function(scope, element, attrs) {
+            element.bind("keydown keypress", function(event) {
+                if (event.which === 13) {
+                    scope.$apply(function() {
+                        scope.$eval(attrs.ngEnter);
+                    });
 
-              event.preventDefault();
-          }
-      });
-  };
-});
-
+                    event.preventDefault();
+                }
+            });
+        };
+    });
 "use strict";
 
 angular.module('weatherApp')
-.directive('updateTitle', updateTitle);
+    .directive('updateTitle', updateTitle);
 // Everyone knows Angular is not the most friendly SEO platform.  This will help populate page titles using the ui-router data attribute.
 // I still set a default title in the title meta tag, otherwise search engines won't pick up the site.  However, Phanton WILL pick this up if thats how you're handling SEO.
 
 
-  updateTitle.$inject = ['$rootScope', '$timeout'];
+updateTitle.$inject = ['$rootScope', '$timeout'];
 
-  function updateTitle($rootScope, $timeout) {
+function updateTitle($rootScope, $timeout) {
     return {
-      link: function(scope, element) {
+        link: function(scope, element) {
 
-        var listener = function(event, toState) {
+            var listener = function(event, toState) {
 
-          var title = 'WeatherApp'; //Default page title.
-          if (toState.data && toState.data.pageTitle) {
-            title = toState.data.pageTitle;  // Grab the data property from the route and use the pageTitle attribute to update the title.
-          }
+                var title = 'WeatherApp'; //Default page title.
+                if (toState.data && toState.data.pageTitle) {
+                    title = toState.data.pageTitle; // Grab the data property from the route and use the pageTitle attribute to update the title.
+                }
 
-          $timeout(function() { // Without this timeout, it will throw a digest error.
-            element.text(title); // set the title.
-          }, 0, false);
-        };
+                $timeout(function() { // Without this timeout, it will throw a digest error.
+                    element.text(title); // set the title.
+                }, 0, false);
+            };
 
-        $rootScope.$on('$stateChangeSuccess', listener);
-      }
+            $rootScope.$on('$stateChangeSuccess', listener);
+        }
     };
-  }
-
+}
 "use strict";
 
 (function() {
@@ -51029,44 +51027,44 @@ angular.module('weatherApp')
 
         function getPosition() {
             var deferred = $q.defer(); //lets return a promise!
-                $window.navigator.geolocation.getCurrentPosition( // Use the browers geolocation service to grab the position, then pass it to a closure function
-                    function(position) {
-                        $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&key=' + CONSTANTS.GOOGLE_MAPS_API_KEY)
-                            .then(function(response) {
-                                deferred.resolve({
-                                    position: position.coords,
-                                    geo: getLocale(response.data.results)
-                                });
-                            })
-                            .catch(function(err) {
-                                deferred.reject({
-                                    error: err,
-                                    message: 'Geolocation is unavailable.'
-                                });
+            $window.navigator.geolocation.getCurrentPosition( // Use the browers geolocation service to grab the position, then pass it to a closure function
+                function(position) {
+                    $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&key=' + CONSTANTS.GOOGLE_MAPS_API_KEY)
+                        .then(function(response) {
+                            deferred.resolve({
+                                position: position.coords,
+                                geo: getLocale(response.data.results)
                             });
-                    },
-                    function(err) { //if the users location is unable to be determined, show London
-                        var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + CONSTANTS.DEFAULT_LAT + ',' + CONSTANTS.DEFAULT_LONG + '&key=' + CONSTANTS.GOOGLE_MAPS_API_KEY;
-                        $http.get(url)
-                            .then(function(response) {
-                                console.log(response);
-                                var coords = {
-                                    latitude: CONSTANTS.DEFAULT_LAT,
-                                    longitude: CONSTANTS.DEFAULT_LONG
-                                };
-                                deferred.resolve({
-                                    position: coords,
-                                    geo: getLocale(response.data.results),
-                                    isDefault: true //let controller know it's getting the default location of london.
-                                });
-                            })
-                            .catch(function(err) {
-                                deferred.reject({
-                                    error: err,
-                                    message: 'Geolocation is unavailable.'
-                                });
+                        })
+                        .catch(function(err) {
+                            deferred.reject({
+                                error: err,
+                                message: 'Geolocation is unavailable.'
                             });
-                    });
+                        });
+                },
+                function(err) { //if the users location is unable to be determined, show London
+                    var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + CONSTANTS.DEFAULT_LAT + ',' + CONSTANTS.DEFAULT_LONG + '&key=' + CONSTANTS.GOOGLE_MAPS_API_KEY;
+                    $http.get(url)
+                        .then(function(response) {
+                            console.log(response);
+                            var coords = {
+                                latitude: CONSTANTS.DEFAULT_LAT,
+                                longitude: CONSTANTS.DEFAULT_LONG
+                            };
+                            deferred.resolve({
+                                position: coords,
+                                geo: getLocale(response.data.results),
+                                isDefault: true //let controller know it's getting the default location of london.
+                            });
+                        })
+                        .catch(function(err) {
+                            deferred.reject({
+                                error: err,
+                                message: 'Geolocation is unavailable.'
+                            });
+                        });
+                });
             return deferred.promise;
         }
         return {
@@ -51074,7 +51072,6 @@ angular.module('weatherApp')
         };
     }
 })();
-
 "use strict";
 
 (function() {
@@ -51090,10 +51087,10 @@ angular.module('weatherApp')
         };
     }
 })();
-
 "use strict";
 
-;(function() {
+;
+(function() {
 
     angular
         .module('weatherApp')
@@ -51103,61 +51100,61 @@ angular.module('weatherApp')
 
 
     function HomeCtrl($scope, LocationSvc, WeatherSvc, CONSTANTS, toastr) {
-      $scope.isLoading = true;  // set loading icon on conroller load.
+        $scope.isLoading = true; // set loading icon on conroller load.
         LocationSvc.getCurrentPosition()
             .then(function(response) {
                 $scope.userLocation = response;
-                if(response.isDefault) {
-                  toastr.info('Unable to determine your location.   Use the search box to look up your area.');
+                if (response.isDefault) {
+                    toastr.info('Unable to determine your location.   Use the search box to look up your area.');
                 }
             })
-            .then(function(response) {  //chain the promise.
-              WeatherSvc.getWeather($scope.userLocation.position.latitude, $scope.userLocation.position.longitude)
-              .then(function(forecast) {
-                $scope.forecast = forecast.data;
-                $scope.isLoading = false;  // An alternate way to handle this would be to have a controller on the body element and put ng-show/hide on the includes.
-                                        // When there is a loading event, you would broadcast it to the body controller who would hide the includes for you.
-              })
-              .catch(function(err) {
-                toastr.error('Error obtaining forecast data.   Please try again later.');
-                $scope.isLoading = false;
-            });
+            .then(function(response) { //chain the promise.
+                WeatherSvc.getWeather($scope.userLocation.position.latitude, $scope.userLocation.position.longitude)
+                    .then(function(forecast) {
+                        $scope.forecast = forecast.data;
+                        $scope.isLoading = false; // An alternate way to handle this would be to have a controller on the body element and put ng-show/hide on the includes.
+                        // When there is a loading event, you would broadcast it to the body controller who would hide the includes for you.
+                    })
+                    .catch(function(err) {
+                        toastr.error('Error obtaining forecast data.   Please try again later.');
+                        $scope.isLoading = false;
+                    });
             })
             .catch(function(err) {
-              toastr.error('Error retrieving location information.  Please try again later.');
+                toastr.error('Error retrieving location information.  Please try again later.');
                 $scope.isLoading = false;
             });
 
-            $scope.locale = {};
+        $scope.locale = {};
 
-             $scope.changeLocale = function() {
-               if(!$scope.locale) {
-                 return toastr.warning('Please input a location');
-               }
-              WeatherSvc.getWeather($scope.locale.latitude, $scope.locale.longitude)
-              .then(function(forecast) {
-                $scope.userLocation.geo = $scope.locale;
-                $scope.forecast = forecast.data;
-              })
-              .catch(function(err) {
-                toastr.error('Error obtaining forecast data.   Please try again later.');
-            });
-          };
+        $scope.changeLocale = function() {
+            if (!$scope.locale) {
+                return toastr.warning('Please input a location');
+            }
+            WeatherSvc.getWeather($scope.locale.latitude, $scope.locale.longitude)
+                .then(function(forecast) {
+                    $scope.userLocation.geo = $scope.locale;
+                    $scope.forecast = forecast.data;
+                })
+                .catch(function(err) {
+                    toastr.error('Error obtaining forecast data.   Please try again later.');
+                });
+        };
 
-          $scope.options = {
+        $scope.options = {
             types: ['(cities)']
-          };
+        };
 
-            $scope.iconDefaults = {
-              color: 'white',
-              size: 120
-            };
+        $scope.iconDefaults = {
+            color: 'white',
+            size: 120
+        };
 
-            $scope.getWindDirection = function(deg) { // Telling the user the winds bearing is not as useful as returning the actual direction.
-              var quadrants = new Array("N", "NNE", "NE", "ENE","E", "ESE", "SE", "SSE","S", "SSW", "SW", "WSW","W", "WNW", "NW", "NNW");
-              return quadrants[Math.floor(((parseInt(deg) + 11.25) / (360/quadrants.length)))]; //normalize the value and then divide by num of quadrants/degrees.  Thanks Cliff Mass.
+        $scope.getWindDirection = function(deg) { // Telling the user the winds bearing is not as useful as returning the actual direction.
+            var quadrants = new Array("N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW");
+            return quadrants[Math.floor(((parseInt(deg) + 11.25) / (360 / quadrants.length)))]; //normalize the value and then divide by num of quadrants/degrees.  Thanks Cliff Mass.
 
-            };
+        };
     }
 
 })();

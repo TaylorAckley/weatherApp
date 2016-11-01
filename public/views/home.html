@@ -1,4 +1,5 @@
-<div class="loading" ng-if="isLoading">  <!-- ng-show would keep this div in the DOM, but I use ng-if to hide it completely -->
+<div class="loading" ng-if="isLoading">
+    <!-- ng-show would keep this div in the DOM, but I use ng-if to hide it completely -->
     <div class="container">
         <div class="row">
             <div class="col-xs-12 text-center">
@@ -16,10 +17,10 @@
                     <div class="col-xs-12 col-md-4 pull-right">
                         <form id="search-form" class="form-inline" ng-submit="changeLocale()" ng-enter="changeLocale()">
                             <div class="form-group">
-                            <label class="sr-only" for="locale">Search</label>
-                            <input vs-google-autocomplete="options" class="form-control search-box" ng-model="locale.name" vs-latitude="locale.latitude" vs-longitude="locale.longitude" vs-city="locale.city" vs-state="locale.state" vs-country="locale.country" name="locale" type="text">
-                          </div>
-                          <button type="submit" class="btn btn-default search-button" ng-click="changeLocale()">Search <i class="fa fa-search"></i></button>
+                                <label class="sr-only" for="locale">Search</label>
+                                <input vs-google-autocomplete="options" class="form-control search-box" ng-model="locale.name" vs-latitude="locale.latitude" vs-longitude="locale.longitude" vs-city="locale.city" vs-state="locale.state" vs-country="locale.country" name="locale" type="text">
+                            </div>
+                            <button type="submit" class="btn btn-default search-button" ng-click="changeLocale()">Search <i class="fa fa-search"></i></button>
                         </form>
                     </div>
                 </div>
@@ -40,7 +41,7 @@
                         <div class="col-xs-12 col-md-9 col-lg-10 pull-left">
                             <p class="current-forecast-summary">{{forecast.currently.summary}}</p>
                             <ul class="current-forecast-details">
-                              <!-- for better code resuability, let's use a component. -->
+                                <!-- for better code resuability, let's use a component. -->
                                 <current-forecast-item title="Temperature" text="{{forecast.currently.temperature | number: 0}}&deg;"></current-forecast-item>
                                 <current-forecast-item title="Chance of Precipitation" text="{{forecast.currently.precipProbability * 100 | number}}%"></current-forecast-item>
                                 <current-forecast-item title="Wind" text="{{getWindDirection(forecast.currently.windBearing)}} {{forecast.currently.windSpeed | number:0}} mph"></current-forecast-item>
@@ -52,23 +53,23 @@
             </section>
         </div>
     </div>
-<section class="weekly-section">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-11 col-md-4 col-xs-offset-1">
-                <h1 class="sub-heading text-righ pull-left">5 Day Forecast</h1>
+    <section class="weekly-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-11 col-md-4 col-xs-offset-1">
+                    <h1 class="sub-heading text-righ pull-left">5 Day Forecast</h1>
+                </div>
+                <div class="col-xs-12 col-md-7 current-forecast pull-right">
+                    <h1 class="weekly-forecast-summary">{{forecast.daily.summary}}</h1>
+                </div>
             </div>
-            <div class="col-xs-12 col-md-7 current-forecast pull-right">
-                <h1 class="weekly-forecast-summary">{{forecast.daily.summary}}</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-11 col-md-offset-1 weekly-forecast-details">
-                <div ng-repeat="day in forecast.daily.data | limitTo: 5">
-                    <weekly-forecast-item icon="iconDefaults" data="day"></weekly-forecast-item>
+            <div class="row">
+                <div class="col-xs-12 col-md-11 col-md-offset-1 weekly-forecast-details">
+                    <div ng-repeat="day in forecast.daily.data | limitTo: 5">
+                        <weekly-forecast-item icon="iconDefaults" data="day"></weekly-forecast-item>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 </section>

@@ -1,6 +1,7 @@
 "use strict";
 
-;(function() { //let's wrap in a IIFE to make sure we don't pollute the global name space.
+;
+(function() { //let's wrap in a IIFE to make sure we don't pollute the global name space.
 
     angular
         .module('weatherApp', [
