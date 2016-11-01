@@ -1,4 +1,8 @@
-# weatherApp
+# Weather App
+
+## Demo
+
+https://weatherapp-taylor.herokuapp.com/#/
 
 Stack:
 
@@ -28,3 +32,4 @@ Stack:
 - Fix build file to copy font folder to public.  Or add a build command all together.
 - Add animations
 - Change the loading to be based off events, not a boolean value in the controller.
+- Change grid elements to flexbox.
