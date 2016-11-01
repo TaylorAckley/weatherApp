@@ -26,10 +26,12 @@ p {
 
 .heading {
     font-size: 7rem; //use rem for better responsiveness.
+    text-align: right;
 
     @media(max-width:768px) {
-        font-size: 4rem;
+        font-size: 3.5rem;
         float: left;
+        text-align: left;
       }
 
 }
