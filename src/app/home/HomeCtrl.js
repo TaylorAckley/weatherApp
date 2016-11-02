@@ -44,8 +44,8 @@
             }
             WeatherSvc.getWeather($scope.locale.latitude, $scope.locale.longitude)
                 .then(function(forecast) {
-                    $scope.userLocation.geo = $scope.locale;
                     $scope.forecast = forecast.data;
+                    $scope.userLocation.geo = $scope.locale;
                 })
                 .catch(function(err) {
                     toastr.error('Error obtaining forecast data.   Please try again later.');
