@@ -50930,26 +50930,24 @@ angular.module('ui.router.state')
 "use strict";
 
 angular.module('weatherApp')
-.component('currentForecastItem', {
-    bindings: {
-      title: '@',
-      text: '@'
-    },
-    templateUrl: 'templates/currentForecastItem.tpl.html'
-  });
-
+    .component('currentForecastItem', {
+        bindings: {
+            title: '@',
+            text: '@'
+        },
+        templateUrl: 'templates/currentForecastItem.tpl.html'
+    });
 "use strict";
 
 angular.module('weatherApp')
-.component('weeklyForecastItem', {
-    bindings: {
-      data: '=', //two way binding
-      icon: '='
+    .component('weeklyForecastItem', {
+        bindings: {
+            data: '=', //two way binding
+            icon: '='
 
-    },
-    templateUrl: 'templates/weeklyForecastItem.tpl.html',
-  });
-
+        },
+        templateUrl: 'templates/weeklyForecastItem.tpl.html',
+    });
 angular.module('weatherApp')
     .directive('ngEnter', function() {
         return function(scope, element, attrs) {
@@ -51104,9 +51102,9 @@ function updateTitle($rootScope, $timeout) {
         LocationSvc.getCurrentPosition()
             .then(function(response) {
                 $scope.userLocation = response;
-                if (response.isDefault) {
-                    toastr.info('Unable to determine your location.   Use the search box to look up your area.');
-                }
+                //if (response.isDefault) {
+                    //toastr.info('Unable to determine your location.   Use the search box to look up your area.');
+                //}
             })
             .then(function(response) { //chain the promise.
                 WeatherSvc.getWeather($scope.userLocation.position.latitude, $scope.userLocation.position.longitude)

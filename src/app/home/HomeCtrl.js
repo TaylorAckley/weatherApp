@@ -15,9 +15,9 @@
         LocationSvc.getCurrentPosition()
             .then(function(response) {
                 $scope.userLocation = response;
-                if (response.isDefault) {
-                    toastr.info('Unable to determine your location.   Use the search box to look up your area.');
-                }
+                //if (response.isDefault) {
+                    //toastr.info('Unable to determine your location.   Use the search box to look up your area.');
+                //}
             })
             .then(function(response) { //chain the promise.
                 WeatherSvc.getWeather($scope.userLocation.position.latitude, $scope.userLocation.position.longitude)
