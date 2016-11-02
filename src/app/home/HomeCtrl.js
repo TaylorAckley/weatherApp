@@ -39,8 +39,8 @@
         $scope.locale = {};
 
         $scope.changeLocale = function() {
-            if (!$scope.locale) {
-                return toastr.warning('Please input a location');
+            if (!$scope.locale.latitude || !$scope.locale.longitude) {
+                return toastr.warning('Please input a valid location.   Make sure you have a city, state and country, or use the autocomplete suggestions.');
             }
             WeatherSvc.getWeather($scope.locale.latitude, $scope.locale.longitude)
                 .then(function(forecast) {

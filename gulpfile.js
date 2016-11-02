@@ -23,6 +23,7 @@ var jsAssets = [
     'vendor/angular-ui-router/release/angular-ui-router.js',
     'vendor/angular-skycons/angular-skycons.min.js',
     'vendor/vsGoogleAutocomplete/dist/vs-google-autocomplete.min.js',
+    'vendor/vsGoogleAutocomplete/dist/vs-autocomplete-validator.js',
     'vendor/angular-toastr/dist/angular-toastr.min.js',
     'vendor/angular-toastr/dist/angular-toastr.tpls.min.js',
     'src/app/**/*.js'

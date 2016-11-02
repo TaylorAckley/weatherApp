@@ -50871,6 +50871,201 @@ angular.module('ui.router.state')
 })(window, window.angular);
 !function(a){"use strict";function b(a,b,c,d){a.beginPath(),a.arc(b,c,d,0,s,!1),a.fill()}function c(a,b,c,d,e){a.beginPath(),a.moveTo(b,c),a.lineTo(d,e),a.stroke()}function d(a,c,d,e,f,g,h,i){var j=Math.cos(c*s),k=Math.sin(c*s);i-=h,b(a,d-k*f,e+j*g+.5*i,h+(1-.5*j)*i)}function e(a,b,c,e,f,g,h,i){var j;for(j=5;j--;)d(a,b+j/5,c,e,f,g,h,i)}function f(a,b,c,d,f,g,h){b/=3e4;var i=.21*f,j=.12*f,k=.24*f,l=.28*f;a.fillStyle=h,e(a,b,c,d,i,j,k,l),a.globalCompositeOperation="destination-out",e(a,b,c,d,i,j,k-g,l-g),a.globalCompositeOperation="source-over"}function g(a,b,d,e,f,g,h){b/=12e4;var i,j,k,l,m=.25*f-.5*g,n=.32*f+.5*g,o=.5*f-.5*g;for(a.strokeStyle=h,a.lineWidth=g,a.lineCap="round",a.lineJoin="round",a.beginPath(),a.arc(d,e,m,0,s,!1),a.stroke(),i=8;i--;)j=(b+i/8)*s,k=Math.cos(j),l=Math.sin(j),c(a,d+k*n,e+l*n,d+k*o,e+l*o)}function h(a,b,c,d,e,f,g){b/=15e3;var h=.29*e-.5*f,i=.05*e,j=Math.cos(b*s),k=j*s/-16;a.strokeStyle=g,a.lineWidth=f,a.lineCap="round",a.lineJoin="round",c+=j*i,a.beginPath(),a.arc(c,d,h,k+s/8,k+7*s/8,!1),a.arc(c+Math.cos(k)*h*t,d+Math.sin(k)*h*t,h,k+5*s/8,k+3*s/8,!0),a.closePath(),a.stroke()}function i(a,b,c,d,e,f,g){b/=1350;var h,i,j,k,l=.16*e,m=11*s/12,n=7*s/12;for(a.fillStyle=g,h=4;h--;)i=(b+h/4)%1,j=c+(h-1.5)/1.5*(1===h||2===h?-1:1)*l,k=d+i*i*e,a.beginPath(),a.moveTo(j,k-1.5*f),a.arc(j,k,.75*f,m,n,!1),a.fill()}function j(a,b,d,e,f,g,h){b/=750;var i,j,k,l,m=.1875*f;for(a.strokeStyle=h,a.lineWidth=.5*g,a.lineCap="round",a.lineJoin="round",i=4;i--;)j=(b+i/4)%1,k=Math.floor(d+(i-1.5)/1.5*(1===i||2===i?-1:1)*m)+.5,l=e+j*f,c(a,k,l-1.5*g,k,l+1.5*g)}function k(a,b,d,e,f,g,h){b/=3e3;var i,j,k,l,m=.16*f,n=.75*g,o=b*s*.7,p=Math.cos(o)*n,q=Math.sin(o)*n,r=o+s/3,t=Math.cos(r)*n,u=Math.sin(r)*n,v=o+2*s/3,w=Math.cos(v)*n,x=Math.sin(v)*n;for(a.strokeStyle=h,a.lineWidth=.5*g,a.lineCap="round",a.lineJoin="round",i=4;i--;)j=(b+i/4)%1,k=d+Math.sin((j+i/4)*s)*m,l=e+j*f,c(a,k-p,l-q,k+p,l+q),c(a,k-t,l-u,k+t,l+u),c(a,k-w,l-x,k+w,l+x)}function l(a,b,c,d,f,g,h){b/=3e4;var i=.21*f,j=.06*f,k=.21*f,l=.28*f;a.fillStyle=h,e(a,b,c,d,i,j,k,l),a.globalCompositeOperation="destination-out",e(a,b,c,d,i,j,k-g,l-g),a.globalCompositeOperation="source-over"}function m(a,b,c,d,e,f,g){var h=e/8,i=h/3,j=2*i,k=b%1*s,l=Math.cos(k),m=Math.sin(k);a.fillStyle=g,a.strokeStyle=g,a.lineWidth=f,a.lineCap="round",a.lineJoin="round",a.beginPath(),a.arc(c,d,h,k,k+Math.PI,!1),a.arc(c-i*l,d-i*m,j,k+Math.PI,k,!1),a.arc(c+j*l,d+j*m,i,k+Math.PI,k,!0),a.globalCompositeOperation="destination-out",a.fill(),a.globalCompositeOperation="source-over",a.stroke()}function n(a,b,c,d,e,f,g,h,i){b/=2500;var j,k,l,n,o=u[g],p=(b+g-v[g].start)%h,q=(b+g-v[g].end)%h,r=(b+g)%h;if(a.strokeStyle=i,a.lineWidth=f,a.lineCap="round",a.lineJoin="round",1>p){if(a.beginPath(),p*=o.length/2-1,j=Math.floor(p),p-=j,j*=2,j+=2,a.moveTo(c+(o[j-2]*(1-p)+o[j]*p)*e,d+(o[j-1]*(1-p)+o[j+1]*p)*e),1>q){for(q*=o.length/2-1,k=Math.floor(q),q-=k,k*=2,k+=2,n=j;n!==k;n+=2)a.lineTo(c+o[n]*e,d+o[n+1]*e);a.lineTo(c+(o[k-2]*(1-q)+o[k]*q)*e,d+(o[k-1]*(1-q)+o[k+1]*q)*e)}else for(n=j;n!==o.length;n+=2)a.lineTo(c+o[n]*e,d+o[n+1]*e);a.stroke()}else if(1>q){for(a.beginPath(),q*=o.length/2-1,k=Math.floor(q),q-=k,k*=2,k+=2,a.moveTo(c+o[0]*e,d+o[1]*e),n=2;n!==k;n+=2)a.lineTo(c+o[n]*e,d+o[n+1]*e);a.lineTo(c+(o[k-2]*(1-q)+o[k]*q)*e,d+(o[k-1]*(1-q)+o[k+1]*q)*e),a.stroke()}1>r&&(r*=o.length/2-1,l=Math.floor(r),r-=l,l*=2,l+=2,m(a,b,c+(o[l-2]*(1-r)+o[l]*r)*e,d+(o[l-1]*(1-r)+o[l+1]*r)*e,e,f,i))}var o,p;!function(){var b=a.requestAnimationFrame||a.webkitRequestAnimationFrame||a.mozRequestAnimationFrame||a.oRequestAnimationFrame||a.msRequestAnimationFrame,c=a.cancelAnimationFrame||a.webkitCancelAnimationFrame||a.mozCancelAnimationFrame||a.oCancelAnimationFrame||a.msCancelAnimationFrame;b&&c?(o=function(a){function c(){d.value=b(c),a()}var d={value:null};return c(),d},p=function(a){c(a.value)}):(o=setInterval,p=clearInterval)}();var q=500,r=.08,s=2*Math.PI,t=2/Math.sqrt(2),u=[[-.75,-.18,-.7219,-.1527,-.6971,-.1225,-.6739,-.091,-.6516,-.0588,-.6298,-.0262,-.6083,.0065,-.5868,.0396,-.5643,.0731,-.5372,.1041,-.5033,.1259,-.4662,.1406,-.4275,.1493,-.3881,.153,-.3487,.1526,-.3095,.1488,-.2708,.1421,-.2319,.1342,-.1943,.1217,-.16,.1025,-.129,.0785,-.1012,.0509,-.0764,.0206,-.0547,-.012,-.0378,-.0472,-.0324,-.0857,-.0389,-.1241,-.0546,-.1599,-.0814,-.1876,-.1193,-.1964,-.1582,-.1935,-.1931,-.1769,-.2157,-.1453,-.229,-.1085,-.2327,-.0697,-.224,-.0317,-.2064,.0033,-.1853,.0362,-.1613,.0672,-.135,.0961,-.1051,.1213,-.0706,.1397,-.0332,.1512,.0053,.158,.0442,.1624,.0833,.1636,.1224,.1615,.1613,.1565,.1999,.15,.2378,.1402,.2749,.1279,.3118,.1147,.3487,.1015,.3858,.0892,.4236,.0787,.4621,.0715,.5012,.0702,.5398,.0766,.5768,.089,.6123,.1055,.6466,.1244,.6805,.144,.7147,.163,.75,.18],[-.75,0,-.7033,.0195,-.6569,.0399,-.6104,.06,-.5634,.0789,-.5155,.0954,-.4667,.1089,-.4174,.1206,-.3676,.1299,-.3174,.1365,-.2669,.1398,-.2162,.1391,-.1658,.1347,-.1157,.1271,-.0661,.1169,-.017,.1046,.0316,.0903,.0791,.0728,.1259,.0534,.1723,.0331,.2188,.0129,.2656,-.0064,.3122,-.0263,.3586,-.0466,.4052,-.0665,.4525,-.0847,.5007,-.1002,.5497,-.113,.5991,-.124,.6491,-.1325,.6994,-.138,.75,-.14]],v=[{start:.36,end:.11},{start:.56,end:.16}],w=function(a){this.list=[],this.interval=null,this.color=a&&a.color?a.color:"black",this.resizeClear=!(!a||!a.resizeClear)};w.CLEAR_DAY=function(a,b,c){var d=a.canvas.width,e=a.canvas.height,f=Math.min(d,e);g(a,b,.5*d,.5*e,f,f*r,c)},w.CLEAR_NIGHT=function(a,b,c){var d=a.canvas.width,e=a.canvas.height,f=Math.min(d,e);h(a,b,.5*d,.5*e,f,f*r,c)},w.PARTLY_CLOUDY_DAY=function(a,b,c){var d=a.canvas.width,e=a.canvas.height,h=Math.min(d,e);g(a,b,.625*d,.375*e,.75*h,h*r,c),f(a,b,.375*d,.625*e,.75*h,h*r,c)},w.PARTLY_CLOUDY_NIGHT=function(a,b,c){var d=a.canvas.width,e=a.canvas.height,g=Math.min(d,e);h(a,b,.667*d,.375*e,.75*g,g*r,c),f(a,b,.375*d,.625*e,.75*g,g*r,c)},w.CLOUDY=function(a,b,c){var d=a.canvas.width,e=a.canvas.height,g=Math.min(d,e);f(a,b,.5*d,.5*e,g,g*r,c)},w.RAIN=function(a,b,c){var d=a.canvas.width,e=a.canvas.height,g=Math.min(d,e);i(a,b,.5*d,.37*e,.9*g,g*r,c),f(a,b,.5*d,.37*e,.9*g,g*r,c)},w.SLEET=function(a,b,c){var d=a.canvas.width,e=a.canvas.height,g=Math.min(d,e);j(a,b,.5*d,.37*e,.9*g,g*r,c),f(a,b,.5*d,.37*e,.9*g,g*r,c)},w.SNOW=function(a,b,c){var d=a.canvas.width,e=a.canvas.height,g=Math.min(d,e);k(a,b,.5*d,.37*e,.9*g,g*r,c),f(a,b,.5*d,.37*e,.9*g,g*r,c)},w.WIND=function(a,b,c){var d=a.canvas.width,e=a.canvas.height,f=Math.min(d,e);n(a,b,.5*d,.5*e,f,f*r,0,2,c),n(a,b,.5*d,.5*e,f,f*r,1,2,c)},w.FOG=function(a,b,d){var e=a.canvas.width,f=a.canvas.height,g=Math.min(e,f),h=g*r;l(a,b,.5*e,.32*f,.75*g,h,d),b/=5e3;var i=Math.cos(b*s)*g*.02,j=Math.cos((b+.25)*s)*g*.02,k=Math.cos((b+.5)*s)*g*.02,m=Math.cos((b+.75)*s)*g*.02,n=.936*f,o=Math.floor(n-.5*h)+.5,p=Math.floor(n-2.5*h)+.5;a.strokeStyle=d,a.lineWidth=h,a.lineCap="round",a.lineJoin="round",c(a,i+.2*e+.5*h,o,j+.8*e-.5*h,o),c(a,k+.2*e+.5*h,p,m+.8*e-.5*h,p)},w.prototype={_determineDrawingFunction:function(a){return"string"==typeof a&&(a=w[a.toUpperCase().replace(/-/g,"_")]||null),a},add:function(a,b){var c;"string"==typeof a&&(a=document.getElementById(a)),null!==a&&(b=this._determineDrawingFunction(b),"function"==typeof b&&(c={element:a,context:a.getContext("2d"),drawing:b},this.list.push(c),this.draw(c,q)))},set:function(a,b){var c;for("string"==typeof a&&(a=document.getElementById(a)),c=this.list.length;c--;)if(this.list[c].element===a)return this.list[c].drawing=this._determineDrawingFunction(b),void this.draw(this.list[c],q);this.add(a,b)},remove:function(a){var b;for("string"==typeof a&&(a=document.getElementById(a)),b=this.list.length;b--;)if(this.list[b].element===a)return void this.list.splice(b,1)},draw:function(a,b){var c=a.context.canvas;this.resizeClear?c.width=c.width:a.context.clearRect(0,0,c.width,c.height),a.drawing(a.context,b,this.color)},play:function(){var a=this;this.pause(),this.interval=o(function(){var b,c=Date.now();for(b=a.list.length;b--;)a.draw(a.list[b],c)},1e3/60)},pause:function(){this.interval&&(p(this.interval),this.interval=null)}},a.Skycons=w}(this);var angularSkycons=angular.module("angular-skycons",[]);angularSkycons.directive("skycon",function(){return{restrict:"E",replace:!0,scope:{icon:"=",size:"=",animated:"=",color:"="},link:function(a,b,c){var d=document.createElement("canvas");d.className=c.class?c.class:"";var e={color:a.color||"black"},f=new Skycons(e);a.$watch("size",function(b){b?(d.height=b,d.width=b):(d.height=a.size||64,d.width=a.size||64)},!0),f.add(d,a.icon),a.$watch("icon",function(){f.set(d,a.icon)},!0),a.$watch("color",function(){f.color=a.color},!0),"false"===a.animated||a.animated===!1?f.pause():f.play(),8===b[0].nodeType?b.replaceWith(d):b[0].appendChild(d),a.$on("$destroy",function(){f.remove(d),0===f.list.length&&f.pause(d)})}}});
 !function(a,b){"use strict";angular.module("vsGoogleAutocomplete",[]),angular.module("vsGoogleAutocomplete").factory("vsGooglePlaceUtility",function(){function a(a){return a?!!a.place_id:!1}function b(b,c){var d,e,f;if(!a(b))return!1;d=b.types;for(var g=0;g<c.length;g++){f=c[g];for(var h=0;h<d.length;h++)if(e=d[h],e===f)return!0}return!1}function c(b,c){var d;if(a(b))for(var e=0;e<b.address_components.length;e++){var f=b.address_components[e].types[0];if(c[f])return d=b.address_components[e][c[f]]}}function d(b){return a(b)?b.place_id:void 0}function e(a){var b={street_number:"short_name"},d=c(a,b);return d}function f(a){var b={route:"long_name"},d=c(a,b);return d}function g(a){var b={locality:"long_name"},d=c(a,b);return d}function h(a){var b={administrative_area_level_1:"short_name"},d=c(a,b);return d}function i(a){var b={administrative_area_level_2:"short_name"},d=c(a,b);return d}function j(a){var b={country:"short_name"},d=c(a,b);return d}function k(a){var b={country:"long_name"},d=c(a,b);return d}function l(a){var b={postal_code:"long_name"},d=c(a,b);return d}function m(a){return angular.isObject(a)&&angular.isObject(a.geometry)}function n(a){return m(a)?a.geometry.location.lat():void 0}function o(a){return m(a)?a.geometry.location.lng():void 0}return{isGooglePlace:a,isContainTypes:b,getPlaceId:d,getStreetNumber:e,getStreet:f,getCity:g,getState:h,getCountryShort:j,getCountry:k,getLatitude:n,getLongitude:o,getPostCode:l,getDistrict:i}}),angular.module("vsGoogleAutocomplete").directive("vsGoogleAutocomplete",["vsGooglePlaceUtility","$timeout",function(a,b){return{restrict:"A",require:["vsGoogleAutocomplete","ngModel"],scope:{vsGoogleAutocomplete:"=",vsPlace:"=?",vsPlaceId:"=?",vsStreetNumber:"=?",vsStreet:"=?",vsCity:"=?",vsState:"=?",vsCountryShort:"=?",vsCountry:"=?",vsPostCode:"=?",vsLatitude:"=?",vsLongitude:"=?",vsDistrict:"=?"},controller:["$scope","$attrs",function(b,c){this.isolatedScope=b,this.updatePlaceComponents=function(d){b.vsPlaceId=c.vsPlaceId&&d?a.getPlaceId(d):void 0,b.vsStreetNumber=c.vsStreetNumber&&d?a.getStreetNumber(d):void 0,b.vsStreet=c.vsStreet&&d?a.getStreet(d):void 0,b.vsCity=c.vsCity&&d?a.getCity(d):void 0,b.vsPostCode=c.vsPostCode&&d?a.getPostCode(d):void 0,b.vsState=c.vsState&&d?a.getState(d):void 0,b.vsCountryShort=c.vsCountryShort&&d?a.getCountryShort(d):void 0,b.vsCountry=c.vsCountry&&d?a.getCountry(d):void 0,b.vsLatitude=c.vsLatitude&&d?a.getLatitude(d):void 0,b.vsLongitude=c.vsLongitude&&d?a.getLongitude(d):void 0,b.vsDistrict=c.vsDistrict&&d?a.getDistrict(d):void 0}}],link:function(a,c,d,e){var f,g,h=e[0],i=e[1],j=a.vsGoogleAutocomplete||{},k=new google.maps.places.Autocomplete(c[0],j);google.maps.event.addListener(k,"place_changed",function(){f=k.getPlace(),g=f.formatted_address||i.$viewValue,a.$apply(function(){a.vsPlace=f,h.updatePlaceComponents(f),i.$setViewValue(g),i.$render()})}),c.on("blur",function(c){g=f&&f.formatted_address?g:i.$viewValue,b(function(){a.$apply(function(){i.$setViewValue(g),i.$render()})})}),google.maps.event.addDomListener(c[0],"keydown",function(a){13==a.keyCode&&a.preventDefault()})}}}])}(window,document);
+/**
+ * vsGoogleAutocomplete - v0.5.0 - 2015-11-29
+ * https://github.com/vskosp/vsGoogleAutocomplete
+ * Copyright (c) 2015 K.Polishchuk
+ * License: MIT
+ */
+(function (window, document) {
+'use strict';
+angular.module('vsGoogleAutocomplete').factory('vsEmbeddedValidatorsInjector', ['$injector', function($injector) {
+	var validatorsHash = [];
+
+	/**
+	 * Class making embedded validator.
+	 * @constructor
+	 * @param {string} name - validator name.
+	 * @param {function(place)} validateMethod - function that will validate place.
+	 */
+	function EmbeddedValidator(name, validateMethod) {
+		this.name = name;
+		this.validate = validateMethod;
+	}
+
+	function searchValidator(validatorName) {
+		for (var i = 0; i < validatorsHash.length; i++) {
+			if(validatorsHash[i].name === validatorName)
+				return validatorsHash[i];
+		}
+		return;
+	}
+
+	function getValidator(validatorName) {
+		var validator = searchValidator(validatorName);
+		if(!validator) {
+			validator = new EmbeddedValidator(validatorName, $injector.get(validatorName));
+			validatorsHash.push(validator);
+		}
+		return validator;
+	}
+
+	function getValidators(validatorsNamesList) {
+		var validatorsList = [];
+		for (var i = 0; i < validatorsNamesList.length; i++) {
+			var validator = getValidator(validatorsNamesList[i]);
+			validatorsList.push(validator);
+		}
+		return validatorsList;
+	}
+
+	return {
+		get: getValidators
+	};
+}]);
+
+angular.module('vsGoogleAutocomplete').service('vsValidatorFactory', ['vsEmbeddedValidatorsInjector', function(vsEmbeddedValidatorsInjector) {
+	/**
+	 * Class making validator associated with vsGoogleAutocomplete controller.
+	 * @constructor
+	 * @param {Array.<string>} validatorsNamesList - List of embedded validator names.
+	 */
+	function Validator(validatorsNamesList) {
+		// add default embedded validator name
+		validatorsNamesList.unshift('vsGooglePlace');
+
+		this._embeddedValidators = vsEmbeddedValidatorsInjector.get(validatorsNamesList);
+		this.error = {};
+		this.valid = true;
+	}
+
+	/**
+	 * Runs all embedded validators and change the validity state.
+	 * @param {google.maps.places.PlaceResult} place - PlaceResult object.
+	 */
+	Validator.prototype.validate = function(place) {
+		var validationErrorKey, isValid;
+
+		for (var i = 0; i < this._embeddedValidators.length; i++) {
+			validationErrorKey = this._embeddedValidators[i].name;
+
+			// runs embedded validator only if place is object
+			if (angular.isObject(place)) {
+				isValid = this._embeddedValidators[i].validate(place);
+			} else {
+				isValid = false;
+			}
+			this._setValidity(validationErrorKey, isValid);
+		}
+	};
+
+	/**
+	 * Sets validity.
+	 * @param {string} validationErrorKey - Error name.
+	 * @param {boolean} isValid - Valid status.
+	 */
+	Validator.prototype._setValidity = function(validationErrorKey, isValid) {
+		// set error
+		if (typeof isValid != 'boolean') {
+			delete this.error[validationErrorKey];
+		} else {
+			if (!isValid) {
+				this.error[validationErrorKey] = true;
+			} else {
+				delete this.error[validationErrorKey];
+			}
+		}
+		// set validity
+		if (this.error) {
+			for (var e in this.error) {
+				this.valid = false;
+				return;
+			}
+		}
+		this.valid = true;
+	};
+
+	this.create = function(validatorsNamesList) {
+		return new Validator(validatorsNamesList);
+	};
+}]);
+
+angular.module('vsGoogleAutocomplete').directive('vsAutocompleteValidator', ['vsValidatorFactory', function(vsValidatorFactory) {
+	/**
+	 * Parse validator names from attribute.
+	 * @param {$compile.directive.Attributes} attrs Element attributes
+	 * @return {Array.<string>} Returns array of normalized validator names.
+	 */
+	function parseValidatorNames(attrs) {
+		var attrValue = attrs.vsAutocompleteValidator,
+			validatorNames = (attrValue!=="") ? attrValue.trim().split(',') : [];
+
+		// normalize validator names
+		for (var i = 0; i < validatorNames.length; i++) {
+			validatorNames[i] = attrs.$normalize(validatorNames[i]);
+		}
+
+		return validatorNames;
+	}
+
+	return {
+		restrict: 'A',
+		require: ['ngModel', 'vsGoogleAutocomplete'],
+		link: function(scope, element, attrs, controllers) {
+			// controllers
+			var modelCtrl = controllers[0],
+				autocompleteCtrl = controllers[1];
+
+			// validator
+			var	validatorNames = parseValidatorNames(attrs),
+				validator = vsValidatorFactory.create(validatorNames);
+
+			// add validator for ngModel
+			modelCtrl.$validators.vsAutocompleteValidator = function() {
+				return validator.valid;
+			};
+
+			// watch for updating place
+			autocompleteCtrl.isolatedScope.$watch('vsPlace', function(place) {
+				// validate place
+				validator.validate(place);
+
+				// set addr components to undefined if place is invalid
+				if (!validator.valid) {
+					autocompleteCtrl.updatePlaceComponents(undefined);
+				}
+
+				// call modelCtrl.$validators.vsAutocompleteValidator
+				modelCtrl.$validate();
+			});
+
+			// publish autocomplete errors
+			modelCtrl.vsAutocompleteErorr = validator.error;
+		}
+	};
+}]);
+
+
+//Validator - checks if place is valid Google address
+angular.module('vsGoogleAutocomplete').factory('vsGooglePlace', ['vsGooglePlaceUtility', function(vsGooglePlaceUtility) {
+	function validate(place) {
+		return vsGooglePlaceUtility.isGooglePlace(place);
+	}
+
+	return validate;
+}]);
+
+//Validator - checks if place is full street address (street number, street, ...)
+angular.module('vsGoogleAutocomplete').factory('vsStreetAddress', ['vsGooglePlaceUtility', function(vsGooglePlaceUtility) {
+	var PLACE_TYPES = ["street_address", "premise"];
+
+	function validate(place) {
+		return vsGooglePlaceUtility.isContainTypes(place, PLACE_TYPES);
+	}
+
+	return validate;
+}]);
+})(window, document);
 !function(){"use strict";function t(t,e,n,s,o,r,a){function i(){return B.length}function l(t){if(1!==arguments.length||t)if(t)d(t.toastId);else for(var e=0;e<B.length;e++)d(B[e].toastId)}function c(t,e,n){var s=v().iconClasses.error;return g(s,t,e,n)}function u(t,e,n){var s=v().iconClasses.info;return g(s,t,e,n)}function p(t,e,n){var s=v().iconClasses.success;return g(s,t,e,n)}function f(t,e,n){var s=v().iconClasses.warning;return g(s,t,e,n)}function m(t,e){t&&t.isOpened&&B.indexOf(t)>=0&&t.scope.refreshTimer(e)}function d(e,n){function s(t){for(var e=0;e<B.length;e++)if(B[e].toastId===t)return B[e]}function o(){return!B.length}var i=s(e);i&&!i.deleting&&(i.deleting=!0,i.isOpened=!1,t.leave(i.el).then(function(){i.scope.options.onHidden&&i.scope.options.onHidden(!!n,i),i.scope.$destroy();var t=B.indexOf(i);delete w[i.scope.message],B.splice(t,1);var e=r.maxOpened;e&&B.length>=e&&B[e-1].open.resolve(),o()&&(O.remove(),O=null,$=a.defer())}))}function g(t,e,n,s){return angular.isObject(n)&&(s=n,n=null),C({iconClass:t,message:e,optionsOverride:s,title:n})}function v(){return angular.extend({},r)}function h(e){if(O)return $.promise;O=angular.element("<div></div>"),O.attr("id",e.containerId),O.addClass(e.positionClass),O.css({"pointer-events":"auto"});var n=angular.element(document.querySelector(e.target));if(!n||!n.length)throw"Target for toasts doesn't exist";return t.enter(O,n).then(function(){$.resolve()}),$.promise}function C(n){function r(){return f.autoDismiss&&f.maxOpened&&B.length>f.maxOpened}function i(t,e,n){function s(e){if(n[e])return function(){n[e](t)}}n.allowHtml?(t.scope.allowHtml=!0,t.scope.title=o.trustAsHtml(e.title),t.scope.message=o.trustAsHtml(e.message)):(t.scope.title=e.title,t.scope.message=e.message),t.scope.toastType=t.iconClass,t.scope.toastId=t.toastId,t.scope.extraData=n.extraData,t.scope.options={extendedTimeOut:n.extendedTimeOut,messageClass:n.messageClass,onHidden:n.onHidden,onShown:s("onShown"),onTap:s("onTap"),progressBar:n.progressBar,tapToDismiss:n.tapToDismiss,timeOut:n.timeOut,titleClass:n.titleClass,toastClass:n.toastClass},n.closeButton&&(t.scope.options.closeHtml=n.closeHtml)}function l(){function t(t){for(var e=["containerId","iconClasses","maxOpened","newestOnTop","positionClass","preventDuplicates","preventOpenDuplicates","templates"],n=0,s=e.length;n<s;n++)delete t[e[n]];return t}var e={toastId:T++,isOpened:!1,scope:s.$new(),open:a.defer()};return e.iconClass=n.iconClass,n.optionsOverride&&(angular.extend(f,t(n.optionsOverride)),e.iconClass=n.optionsOverride.iconClass||e.iconClass),i(e,n,f),e.el=c(e.scope),e}function c(t){var n=angular.element("<div toast></div>"),s=e.get("$compile");return s(n)(t)}function u(){return f.maxOpened&&B.length<=f.maxOpened||!f.maxOpened}function p(){var t=f.preventDuplicates&&n.message===x,e=f.preventOpenDuplicates&&w[n.message];return!(!t&&!e)||(x=n.message,w[n.message]=!0,!1)}var f=v();if(!p()){var m=l();if(B.push(m),r())for(var g=B.slice(0,B.length-f.maxOpened),C=0,$=g.length;C<$;C++)d(g[C].toastId);return u()&&m.open.resolve(),m.open.promise.then(function(){h(f).then(function(){if(m.isOpened=!0,f.newestOnTop)t.enter(m.el,O).then(function(){m.scope.init()});else{var e=O[0].lastChild?angular.element(O[0].lastChild):null;t.enter(m.el,O,e).then(function(){m.scope.init()})}})}),m}}var O,T=0,B=[],x="",w={},$=a.defer(),D={active:i,clear:l,error:c,info:u,remove:d,success:p,warning:f,refreshTimer:m};return D}angular.module("toastr",[]).factory("toastr",t),t.$inject=["$animate","$injector","$document","$rootScope","$sce","toastrConfig","$q"]}(),function(){"use strict";angular.module("toastr").constant("toastrConfig",{allowHtml:!1,autoDismiss:!1,closeButton:!1,closeHtml:"<button>&times;</button>",containerId:"toast-container",extendedTimeOut:1e3,iconClasses:{error:"toast-error",info:"toast-info",success:"toast-success",warning:"toast-warning"},maxOpened:0,messageClass:"toast-message",newestOnTop:!0,onHidden:null,onShown:null,onTap:null,positionClass:"toast-top-right",preventDuplicates:!1,preventOpenDuplicates:!1,progressBar:!1,tapToDismiss:!0,target:"body",templates:{toast:"directives/toast/toast.html",progressbar:"directives/progressbar/progressbar.html"},timeOut:5e3,titleClass:"toast-title",toastClass:"toast"})}(),function(){"use strict";function t(t){function e(t,e,n,s){function o(){var t=(i-(new Date).getTime())/a*100;e.css("width",t+"%")}var r,a,i;s.progressBar=t,t.start=function(t){r&&clearInterval(r),a=parseFloat(t),i=(new Date).getTime()+a,r=setInterval(o,10)},t.stop=function(){r&&clearInterval(r)},t.$on("$destroy",function(){clearInterval(r)})}return{require:"^toast",templateUrl:function(){return t.templates.progressbar},link:e}}angular.module("toastr").directive("progressBar",t),t.$inject=["toastrConfig"]}(),function(){"use strict";function t(){this.progressBar=null,this.startProgressBar=function(t){this.progressBar&&this.progressBar.start(t)},this.stopProgressBar=function(){this.progressBar&&this.progressBar.stop()}}angular.module("toastr").controller("ToastController",t)}(),function(){"use strict";function t(t,e,n,s){function o(n,o,r,a){function i(t){return a.startProgressBar(t),e(function(){a.stopProgressBar(),s.remove(n.toastId)},t,1)}function l(){n.progressBar=!1,a.stopProgressBar()}function c(){return n.options.closeHtml}var u;if(n.toastClass=n.options.toastClass,n.titleClass=n.options.titleClass,n.messageClass=n.options.messageClass,n.progressBar=n.options.progressBar,c()){var p=angular.element(n.options.closeHtml),f=t.get("$compile");p.addClass("toast-close-button"),p.attr("ng-click","close(true, $event)"),f(p)(n),o.children().prepend(p)}n.init=function(){n.options.timeOut&&(u=i(n.options.timeOut)),n.options.onShown&&n.options.onShown()},o.on("mouseenter",function(){l(),u&&e.cancel(u)}),n.tapToast=function(){angular.isFunction(n.options.onTap)&&n.options.onTap(),n.options.tapToDismiss&&n.close(!0)},n.close=function(t,e){e&&angular.isFunction(e.stopPropagation)&&e.stopPropagation(),s.remove(n.toastId,t)},n.refreshTimer=function(t){u&&(e.cancel(u),u=i(t||n.options.timeOut))},o.on("mouseleave",function(){0===n.options.timeOut&&0===n.options.extendedTimeOut||(n.$apply(function(){n.progressBar=n.options.progressBar}),u=i(n.options.extendedTimeOut))})}return{templateUrl:function(){return n.templates.toast},controller:"ToastController",link:o}}angular.module("toastr").directive("toast",t),t.$inject=["$injector","$interval","toastrConfig","toastr"]}();
 !function(){"use strict";function t(t,e,s,n,o,r,a){function i(){return w.length}function l(t){if(1!==arguments.length||t)if(t)m(t.toastId);else for(var e=0;e<w.length;e++)m(w[e].toastId)}function c(t,e,s){var n=v().iconClasses.error;return f(n,t,e,s)}function u(t,e,s){var n=v().iconClasses.info;return f(n,t,e,s)}function p(t,e,s){var n=v().iconClasses.success;return f(n,t,e,s)}function g(t,e,s){var n=v().iconClasses.warning;return f(n,t,e,s)}function d(t,e){t&&t.isOpened&&w.indexOf(t)>=0&&t.scope.refreshTimer(e)}function m(e,s){function n(t){for(var e=0;e<w.length;e++)if(w[e].toastId===t)return w[e]}function o(){return!w.length}var i=n(e);i&&!i.deleting&&(i.deleting=!0,i.isOpened=!1,t.leave(i.el).then(function(){i.scope.options.onHidden&&i.scope.options.onHidden(!!s,i),i.scope.$destroy();var t=w.indexOf(i);delete x[i.scope.message],w.splice(t,1);var e=r.maxOpened;e&&w.length>=e&&w[e-1].open.resolve(),o()&&(O.remove(),O=null,$=a.defer())}))}function f(t,e,s,n){return angular.isObject(s)&&(n=s,s=null),C({iconClass:t,message:e,optionsOverride:n,title:s})}function v(){return angular.extend({},r)}function h(e){if(O)return $.promise;O=angular.element("<div></div>"),O.attr("id",e.containerId),O.addClass(e.positionClass),O.css({"pointer-events":"auto"});var s=angular.element(document.querySelector(e.target));if(!s||!s.length)throw"Target for toasts doesn't exist";return t.enter(O,s).then(function(){$.resolve()}),$.promise}function C(s){function r(){return g.autoDismiss&&g.maxOpened&&w.length>g.maxOpened}function i(t,e,s){function n(e){if(s[e])return function(){s[e](t)}}s.allowHtml?(t.scope.allowHtml=!0,t.scope.title=o.trustAsHtml(e.title),t.scope.message=o.trustAsHtml(e.message)):(t.scope.title=e.title,t.scope.message=e.message),t.scope.toastType=t.iconClass,t.scope.toastId=t.toastId,t.scope.extraData=s.extraData,t.scope.options={extendedTimeOut:s.extendedTimeOut,messageClass:s.messageClass,onHidden:s.onHidden,onShown:n("onShown"),onTap:n("onTap"),progressBar:s.progressBar,tapToDismiss:s.tapToDismiss,timeOut:s.timeOut,titleClass:s.titleClass,toastClass:s.toastClass},s.closeButton&&(t.scope.options.closeHtml=s.closeHtml)}function l(){function t(t){for(var e=["containerId","iconClasses","maxOpened","newestOnTop","positionClass","preventDuplicates","preventOpenDuplicates","templates"],s=0,n=e.length;s<n;s++)delete t[e[s]];return t}var e={toastId:T++,isOpened:!1,scope:n.$new(),open:a.defer()};return e.iconClass=s.iconClass,s.optionsOverride&&(angular.extend(g,t(s.optionsOverride)),e.iconClass=s.optionsOverride.iconClass||e.iconClass),i(e,s,g),e.el=c(e.scope),e}function c(t){var s=angular.element("<div toast></div>"),n=e.get("$compile");return n(s)(t)}function u(){return g.maxOpened&&w.length<=g.maxOpened||!g.maxOpened}function p(){var t=g.preventDuplicates&&s.message===B,e=g.preventOpenDuplicates&&x[s.message];return!(!t&&!e)||(B=s.message,x[s.message]=!0,!1)}var g=v();if(!p()){var d=l();if(w.push(d),r())for(var f=w.slice(0,w.length-g.maxOpened),C=0,$=f.length;C<$;C++)m(f[C].toastId);return u()&&d.open.resolve(),d.open.promise.then(function(){h(g).then(function(){if(d.isOpened=!0,g.newestOnTop)t.enter(d.el,O).then(function(){d.scope.init()});else{var e=O[0].lastChild?angular.element(O[0].lastChild):null;t.enter(d.el,O,e).then(function(){d.scope.init()})}})}),d}}var O,T=0,w=[],B="",x={},$=a.defer(),b={active:i,clear:l,error:c,info:u,remove:m,success:p,warning:g,refreshTimer:d};return b}angular.module("toastr",[]).factory("toastr",t),t.$inject=["$animate","$injector","$document","$rootScope","$sce","toastrConfig","$q"]}(),function(){"use strict";angular.module("toastr").constant("toastrConfig",{allowHtml:!1,autoDismiss:!1,closeButton:!1,closeHtml:"<button>&times;</button>",containerId:"toast-container",extendedTimeOut:1e3,iconClasses:{error:"toast-error",info:"toast-info",success:"toast-success",warning:"toast-warning"},maxOpened:0,messageClass:"toast-message",newestOnTop:!0,onHidden:null,onShown:null,onTap:null,positionClass:"toast-top-right",preventDuplicates:!1,preventOpenDuplicates:!1,progressBar:!1,tapToDismiss:!0,target:"body",templates:{toast:"directives/toast/toast.html",progressbar:"directives/progressbar/progressbar.html"},timeOut:5e3,titleClass:"toast-title",toastClass:"toast"})}(),function(){"use strict";function t(t){function e(t,e,s,n){function o(){var t=(i-(new Date).getTime())/a*100;e.css("width",t+"%")}var r,a,i;n.progressBar=t,t.start=function(t){r&&clearInterval(r),a=parseFloat(t),i=(new Date).getTime()+a,r=setInterval(o,10)},t.stop=function(){r&&clearInterval(r)},t.$on("$destroy",function(){clearInterval(r)})}return{require:"^toast",templateUrl:function(){return t.templates.progressbar},link:e}}angular.module("toastr").directive("progressBar",t),t.$inject=["toastrConfig"]}(),function(){"use strict";function t(){this.progressBar=null,this.startProgressBar=function(t){this.progressBar&&this.progressBar.start(t)},this.stopProgressBar=function(){this.progressBar&&this.progressBar.stop()}}angular.module("toastr").controller("ToastController",t)}(),function(){"use strict";function t(t,e,s,n){function o(s,o,r,a){function i(t){return a.startProgressBar(t),e(function(){a.stopProgressBar(),n.remove(s.toastId)},t,1)}function l(){s.progressBar=!1,a.stopProgressBar()}function c(){return s.options.closeHtml}var u;if(s.toastClass=s.options.toastClass,s.titleClass=s.options.titleClass,s.messageClass=s.options.messageClass,s.progressBar=s.options.progressBar,c()){var p=angular.element(s.options.closeHtml),g=t.get("$compile");p.addClass("toast-close-button"),p.attr("ng-click","close(true, $event)"),g(p)(s),o.children().prepend(p)}s.init=function(){s.options.timeOut&&(u=i(s.options.timeOut)),s.options.onShown&&s.options.onShown()},o.on("mouseenter",function(){l(),u&&e.cancel(u)}),s.tapToast=function(){angular.isFunction(s.options.onTap)&&s.options.onTap(),s.options.tapToDismiss&&s.close(!0)},s.close=function(t,e){e&&angular.isFunction(e.stopPropagation)&&e.stopPropagation(),n.remove(s.toastId,t)},s.refreshTimer=function(t){u&&(e.cancel(u),u=i(t||s.options.timeOut))},o.on("mouseleave",function(){0===s.options.timeOut&&0===s.options.extendedTimeOut||(s.$apply(function(){s.progressBar=s.options.progressBar}),u=i(s.options.extendedTimeOut))})}return{templateUrl:function(){return s.templates.toast},controller:"ToastController",link:o}}angular.module("toastr").directive("toast",t),t.$inject=["$injector","$interval","toastrConfig","toastr"]}(),angular.module("toastr").run(["$templateCache",function(t){t.put("directives/progressbar/progressbar.html",'<div class="toast-progress"></div>\n'),t.put("directives/toast/toast.html",'<div class="{{toastClass}} {{toastType}}" ng-click="tapToast()">\n  <div ng-switch on="allowHtml">\n    <div ng-switch-default ng-if="title" class="{{titleClass}}" aria-label="{{title}}">{{title}}</div>\n    <div ng-switch-default class="{{messageClass}}" aria-label="{{message}}">{{message}}</div>\n    <div ng-switch-when="true" ng-if="title" class="{{titleClass}}" ng-bind-html="title"></div>\n    <div ng-switch-when="true" class="{{messageClass}}" ng-bind-html="message"></div>\n  </div>\n  <progress-bar ng-if="progressBar"></progress-bar>\n</div>\n')}]);
 "use strict";
@@ -51126,8 +51321,8 @@ function updateTitle($rootScope, $timeout) {
         $scope.locale = {};
 
         $scope.changeLocale = function() {
-            if (!$scope.locale) {
-                return toastr.warning('Please input a location');
+            if (!$scope.locale.latitude || !$scope.locale.longitude) {
+                return toastr.warning('Please input a valid location.   Make sure you have a city, state and country, or use the autocomplete suggestions.');
             }
             WeatherSvc.getWeather($scope.locale.latitude, $scope.locale.longitude)
                 .then(function(forecast) {

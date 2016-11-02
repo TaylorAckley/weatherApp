@@ -17,7 +17,7 @@
                         <form id="search-form" class="form-inline" ng-submit="changeLocale()" ng-enter="changeLocale()">
                             <div class="form-group">
                             <label class="sr-only" for="locale">Search</label>
-                            <input vs-google-autocomplete="options" class="form-control search-box" ng-model="locale.name" vs-latitude="locale.latitude" vs-longitude="locale.longitude" vs-city="locale.city" vs-state="locale.state" vs-country="locale.country" name="locale" type="text">
+                            <input vs-google-autocomplete="options" vs-autocomplete-validator class="form-control search-box" ng-model="locale.name" vs-latitude="locale.latitude" vs-longitude="locale.longitude" vs-city="locale.city" vs-state="locale.state" vs-country="locale.country" name="locale" type="text">
                           </div>
                           <button type="submit" class="btn btn-default search-button" ng-click="changeLocale()">Search <i class="fa fa-search"></i></button>
                         </form>
