@@ -28,9 +28,15 @@ p {
     font-size: 7rem; //use rem for better responsiveness.
     text-align: right;
     @media(max-width:768px) {
+<<<<<<< HEAD
         font-size: 3.5rem;
         text-align: left;
     }
+=======
+        font-size: 4rem;
+      }
+
+>>>>>>> parent of 416cb82... more responsiveness fixes
 }
 
 .heading.ng-enter {
