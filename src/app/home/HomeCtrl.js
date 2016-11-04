@@ -1,17 +1,18 @@
 "use strict";
 
-;
-(function() {
+;(function() {
 
     angular
         .module('weatherApp')
         .controller('HomeCtrl', HomeCtrl);
 
-    HomeCtrl.$inject = ['$scope', 'LocationSvc', 'WeatherSvc', 'CONSTANTS', 'toastr'];
+    HomeCtrl.$inject = ['$scope', '$interval', 'LocationSvc', 'WeatherSvc', 'CONSTANTS', 'toastr'];
 
 
-    function HomeCtrl($scope, LocationSvc, WeatherSvc, CONSTANTS, toastr) {
+    function HomeCtrl($scope, $interval, LocationSvc, WeatherSvc, CONSTANTS, toastr) {
         $scope.isLoading = true; // set loading icon on conroller load.
+        $scope.refresh = false;
+        $scope.locale = {}; // hoist a disposable scope variable that isn;t bound to anything on the front end.
         LocationSvc.getCurrentPosition()
             .then(function(response) {
                 $scope.userLocation = response;
@@ -22,6 +23,7 @@
             .then(function(response) { //chain the promise.
                 WeatherSvc.getWeather($scope.userLocation.position.latitude, $scope.userLocation.position.longitude)
                     .then(function(forecast) {
+                      console.log(forecast);
                         $scope.forecast = forecast.data;
                         $scope.isLoading = false; // An alternate way to handle this would be to have a controller on the body element and put ng-show/hide on the includes.
                         // When there is a loading event, you would broadcast it to the body controller who would hide the includes for you.
@@ -36,21 +38,38 @@
                 $scope.isLoading = false;
             });
 
-        $scope.locale = {};
-
         $scope.changeLocale = function() {
             if (!$scope.locale.latitude || !$scope.locale.longitude) {
-                return toastr.warning('Please input a valid location.   Make sure you have a city, state and country, or use the autocomplete suggestions.');
-            }
+              toastr.warning('Please input a valid location.   Make sure you have a city, state and country, or use the autocomplete suggestions.');
+                return;
+            } else {
+            $scope.loading = true;
             WeatherSvc.getWeather($scope.locale.latitude, $scope.locale.longitude)
                 .then(function(forecast) {
                     $scope.forecast = forecast.data;
                     $scope.userLocation.geo = $scope.locale;
+                    $scope.userLocation.position = $scope.locale;
+                    $scope.loading = false;
                 })
                 .catch(function(err) {
                     toastr.error('Error obtaining forecast data.   Please try again later.');
+                    $scope.loading = false;
                 });
+              }
         };
+
+        $interval(function() {//refresh weather data every 5 minutes
+          $scope.refresh = true;
+          WeatherSvc.getWeather($scope.userLocation.position.latitude, $scope.userLocation.position.longitude)
+              .then(function(forecast) {
+                  $scope.forecast = forecast.data;
+                  $scope.refresh = false;
+              })
+              .catch(function(err) {
+                  toastr.error('Error obtaining forecast data.   Please try again later.');
+                  $scope.refresh = false;
+              });
+        }, ((1000 * 60) *5));
 
         $scope.options = {
             types: ['(cities)']
