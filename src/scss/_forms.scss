@@ -12,6 +12,8 @@
         font-size: 18px;
         transition: border 0.3s;
         background: none;
+        display: inline-block;
+        width: 90%;
     }
 
     .search-box:focus {
@@ -24,5 +26,13 @@
         background: none;
         border: none;
         color: $border;
+        position: relative;
+        left: -15px;
+        @media(min-width: 768px) {
+          display: inline-block;
+      }
     }
+
+
+
 }
